@@ -1,0 +1,35 @@
+from airflow import DAG
+from airflow.operators.bash import BashOperator
+from datetime import datetime
+
+with DAG(
+
+'quality_pipeline',
+
+start_date=datetime(
+2025,1,1
+),
+
+schedule='@daily',
+
+catchup=False
+
+) as dag:
+
+    validate=BashOperator(
+
+    task_id='validate',
+
+    bash_command=
+    'python validation/validate_data.py'
+    )
+
+    transform=BashOperator(
+
+    task_id='transform',
+
+    bash_command=
+    'spark-submit spark/transform.py'
+    )
+
+validate>>transform
