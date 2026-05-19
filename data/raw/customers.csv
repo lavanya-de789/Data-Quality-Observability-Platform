@@ -1,0 +1,7 @@
+customer_id,name,city,spend
+
+1,John,Dallas,500
+2,Edward,Austin,700
+3,Sarah,,200
+4,Mike,Dallas,-100
+5,,Chicago,900
